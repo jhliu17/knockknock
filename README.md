@@ -8,15 +8,47 @@ When training deep learning models, it is common to use early stopping. Apart fr
 
 ## Installation
 
-Install with `pip` or equivalent.
-
 ```bash
-pip install knockknock
+git clone git@github.com:jhliu17/knockknock.git
+cd knockknock
+python setup.py install
 ```
 
 This code has only been tested with Python >= 3.6.
 
 ## Usage
+
+Set a ini config file in your folder.
+```
+[knockknock]
+sender=slack
+notification=True
+webhook_url=your_url
+channel=your_channel
+```
+
+```python
+from knockknock import knockknock  # general decorator is named as knockknock (like tqdm)
+
+@knockknock(config_path='./', config_name='test.ini')  # directly set your config path
+def train_your_model(your_nicest_parameters):
+    import time
+    time.sleep(10)
+    return {'loss': 0.9}  # Optional return value
+
+
+@knockknock(config_path='./', config_name='test.ini')  # convenient to use it multiple times in your codebase
+def eval_your_model(your_nicest_parameters):
+    import time
+    time.sleep(10)
+    return {'acc': 0.9}  # Optional return value
+
+
+train_your_model(None)
+eval_your_model(None)
+```
+
+## Platform Details
 
 The library is designed to be used in a seamless way, with minimal code modification: you only need to add a decorator on top your main function call. The return value (if there is one) is also reported in the notification.
 
