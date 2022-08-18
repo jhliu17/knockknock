@@ -9,7 +9,7 @@ When training deep learning models, it is common to use early stopping. Apart fr
 ## Installation
 
 ```bash
-git clone git@github.com:jhliu17/knockknock.git
+git clone https://github.com/jhliu17/knockknock.git
 cd knockknock
 python setup.py install
 ```
